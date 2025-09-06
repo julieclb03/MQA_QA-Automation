@@ -1,6 +1,11 @@
-
 name: Python Tests
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 jobs:
   ai_and_ui:
     runs-on: ubuntu-latest
@@ -9,18 +14,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
       - name: AI project
         run: |
           cd projects/03-ai-recs-validator
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          mkdir -p reports
           python -m src.recommender --input data/tracks_features.csv --profiles data/user_profiles.json --out reports/metrics.json
           pytest -q
+
       - name: Selenium project
         run: |
           cd projects/05-beat-store-regression
           pip install -r requirements.txt
           pytest -q --alluredir=reports/allure-results
+
       - name: Upload UI artifacts
         uses: actions/upload-artifact@v4
         with:
