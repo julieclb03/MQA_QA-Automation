@@ -1,0 +1,18 @@
+
+name: SQL Checks
+on: [push, pull_request]
+jobs:
+  sqlite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y sqlite3
+      - run: |
+          cd projects/02-sql-music-library
+          sqlite3 music.db < db/schema.sql
+          sqlite3 music.db < db/seed.sql
+          sqlite3 -header -csv music.db < queries/q1_top5_most_played.sql > reports/ci_q1.csv
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sql-results
+          path: projects/02-sql-music-library/reports/*.csv

@@ -1,0 +1,48 @@
+{
+  "info": {
+    "name": "Lyrics/Metadata API",
+    "_postman_id": "abcd-1234",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Search Artist",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{API_BASE}}/search?q=H.E.R.",
+          "host": [
+            "{{API_BASE}}"
+          ],
+          "path": [
+            "search"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "H.E.R."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Bad Resource (Expect 404 or empty)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{API_BASE}}/track/000000",
+          "host": [
+            "{{API_BASE}}"
+          ],
+          "path": [
+            "track",
+            "000000"
+          ]
+        }
+      }
+    }
+  ]
+}

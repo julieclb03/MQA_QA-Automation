@@ -1,0 +1,19 @@
+[
+  {
+    "user": "Lauren",
+    "mood": "chill",
+    "max_tempo": 95,
+    "genres": [
+      "rnb",
+      "lofi"
+    ]
+  },
+  {
+    "user": "Studio",
+    "mood": "worship",
+    "max_tempo": 85,
+    "genres": [
+      "gospel"
+    ]
+  }
+]

@@ -1,0 +1,28 @@
+
+name: Python Tests
+on: [push, pull_request]
+jobs:
+  ai_and_ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: AI project
+        run: |
+          cd projects/03-ai-recs-validator
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python -m src.recommender --input data/tracks_features.csv --profiles data/user_profiles.json --out reports/metrics.json
+          pytest -q
+      - name: Selenium project
+        run: |
+          cd projects/05-beat-store-regression
+          pip install -r requirements.txt
+          pytest -q --alluredir=reports/allure-results
+      - name: Upload UI artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: projects/05-beat-store-regression/reports/allure-results

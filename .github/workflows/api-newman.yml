@@ -1,0 +1,20 @@
+
+name: API Newman
+on: [push, pull_request]
+jobs:
+  newman:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: npm i -g newman newman-reporter-htmlextra
+      - run: |
+          cd projects/04-lyrics-api-tests
+          newman run postman/lyrics_collection.json -e postman/env.example.json -r htmlextra --reporter-htmlextra-export newman-reports/index.html
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-report
+          path: projects/04-lyrics-api-tests/newman-reports/index.html
