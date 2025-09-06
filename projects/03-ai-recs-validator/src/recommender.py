@@ -1,5 +1,6 @@
 
 import json, argparse, pandas as pd
+import os    # <-- add this line
 
 def parse():
   ap = argparse.ArgumentParser()
@@ -29,6 +30,7 @@ def main():
     valid = [ (row["tempo"]<=prof["max_tempo"]) and any(row.get(f"genre_{g}",0)==1 for g in prof["genres"]) for row in recs ]
     precision = sum(valid)/len(recs)
     metrics[prof["user"]] = {"precision_at_3": precision, "recs":[{"title":r["title"],"score":round(float(r["score"]),3)} for r in recs]}
+  os.makedirs(os.path.dirname(args.out), exist_ok=True)
   with open(args.out,"w") as f:
     json.dump(metrics,f,indent=2)
 
