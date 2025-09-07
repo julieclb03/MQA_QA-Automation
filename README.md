@@ -1,3 +1,15 @@
+<p align="left">
+  <a href="https://github.com/julielcb03/MQA_QA-Automation/actions/workflows/python-pytest.yml">
+    <img src="https://github.com/julielcb03/MQA_QA-Automation/actions/workflows/python-pytest.yml/badge.svg?branch=main" alt="Python Tests">
+  </a>
+  <a href="https://github.com/julielcb03/MQA_QA-Automation/actions/workflows/api-newman.yml">
+    <img src="https://github.com/julielcb03/MQA_QA-Automation/actions/workflows/api-newman.yml/badge.svg?branch=main" alt="API Newman">
+  </a>
+  <a href="https://github.com/julielcb03/MQA_QA-Automation/actions/workflows/sql-ci.yml">
+    <img src="https://github.com/julielcb03/MQA_QA-Automation/actions/workflows/sql-ci.yml/badge.svg?branch=main" alt="SQL Checks">
+  </a>
+</p>
+
 ## Build Status
 [![Python Tests](https://github.com/julielcb03/MQA_QA-Automation/actions/workflows/python-pytest.yml/badge.svg?branch=main)](https://github.com/julielcb03/MQA_QA-Automation/actions/workflows/python-pytest.yml)
 [![SQL Checks](https://github.com/julielcb03/MQA_QA-Automation/actions/workflows/sql-ci.yml/badge.svg?branch=main)](https://github.com/julielcb03/MQA_QA-Automation/actions/workflows/sql-ci.yml)
