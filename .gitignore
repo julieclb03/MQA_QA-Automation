@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# SQLite
+*.db
+
+# UI Allure runtime artifacts (keep SQL CSVs & AI metrics)
+projects/05-beat-store-regression/reports/allure-results/
