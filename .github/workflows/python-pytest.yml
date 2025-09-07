@@ -11,16 +11,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: AI project
+      - name: Install deps (AI project)
+        working-directory: projects/03-ai-recs-validator
         run: |
-          cd projects/03-ai-recs-validator
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install pytest
+
+      - name: Run AI metrics + tests
+        working-directory: projects/03-ai-recs-validator
+        env:
+          PYTHONPATH: .
+        run: |
           mkdir -p reports
           python -m src.recommender --input data/tracks_features.csv --profiles data/user_profiles.json --out reports/metrics.json
           pytest -q
-          
