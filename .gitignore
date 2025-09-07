@@ -12,3 +12,6 @@ __pycache__/
 
 # UI Allure runtime artifacts (keep SQL CSVs & AI metrics)
 projects/05-beat-store-regression/reports/allure-results/
+# IDE & pytest
+.idea/
+.pytest_cache/
