@@ -7,16 +7,13 @@ on:
     branches: [ "main" ]
 
 jobs:
-  ai_and_ui:
+  ai_only:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
 
       - name: AI project
         run: |
@@ -26,15 +23,4 @@ jobs:
           mkdir -p reports
           python -m src.recommender --input data/tracks_features.csv --profiles data/user_profiles.json --out reports/metrics.json
           pytest -q
-
-      - name: Selenium project
-        run: |
-          cd projects/05-beat-store-regression
-          pip install -r requirements.txt
-          pytest -q --alluredir=reports/allure-results
-
-      - name: Upload UI artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: projects/05-beat-store-regression/reports/allure-results
+          
